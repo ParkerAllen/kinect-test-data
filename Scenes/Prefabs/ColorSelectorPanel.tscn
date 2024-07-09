@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/Armature/Color/ColorSelectorPanel.cs" id="1_8hcou"]
+
+[node name="ColorSelectorPanel" type="PanelContainer" node_paths=PackedStringArray("TitleLabel", "Button", "ColorRect")]
+script = ExtResource("1_8hcou")
+TitleLabel = NodePath("HBoxContainer/Label")
+Button = NodePath("HBoxContainer/PickerButton")
+ColorRect = NodePath("HBoxContainer/PickerButton/ColorRect")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Left Color: "
+vertical_alignment = 1
+
+[node name="PickerButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ColorRect" type="ColorRect" parent="HBoxContainer/PickerButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="button_up" from="HBoxContainer/PickerButton" to="." method="OnClick"]

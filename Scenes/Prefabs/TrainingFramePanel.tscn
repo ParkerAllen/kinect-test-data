@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=3 uid="uid://nimnjb60onok"]
+
+[ext_resource type="Texture2D" uid="uid://dx4wepe5fwiim" path="res://Sprites/UI/circle-solid-96.png" id="1_0av5v"]
+[ext_resource type="Script" path="res://src/Training/UI/TrainingFramePanel.cs" id="1_fc75o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_05s66"]
+
+[sub_resource type="FontVariation" id="FontVariation_21wb5"]
+spacing_top = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14ona"]
+bg_color = Color(0.141176, 0.141176, 0.14902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpgem"]
+bg_color = Color(0.454902, 0.454902, 0.54902, 1)
+
+[node name="FramePanel" type="Panel" node_paths=PackedStringArray("FrameIndex", "Button", "EditedLabel")]
+custom_minimum_size = Vector2(0, 14)
+theme_override_styles/panel = SubResource("StyleBoxEmpty_05s66")
+script = ExtResource("1_fc75o")
+FrameIndex = NodePath("Label")
+Button = NodePath("FrameButton")
+EditedLabel = NodePath("FrameButton/Label")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 10.0
+grow_vertical = 2
+theme_override_fonts/font = SubResource("FontVariation_21wb5")
+theme_override_font_sizes/font_size = 10
+text = " 0"
+vertical_alignment = 1
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.5
+offset_right = -200.0
+offset_bottom = 1.50001
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="FrameButton" type="Button" parent="."]
+custom_minimum_size = Vector2(50, 12)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 15.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = SubResource("StyleBoxFlat_14ona")
+theme_override_styles/focus = SubResource("StyleBoxFlat_fpgem")
+alignment = 2
+expand_icon = true
+
+[node name="Label" type="Label" parent="FrameButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -40.0
+offset_top = -13.0
+offset_right = -5.0
+offset_bottom = 13.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "*"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="FrameButton"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 2.0
+offset_top = -5.0
+offset_right = 12.0
+offset_bottom = 5.0
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_0av5v")
+expand_mode = 4
+
+[connection signal="button_up" from="FrameButton" to="." method="OnPressUp"]

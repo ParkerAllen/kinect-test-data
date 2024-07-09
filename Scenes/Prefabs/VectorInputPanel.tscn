@@ -1,0 +1,48 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://src/Armature/Vector/VectorInputPanel.cs" id="1_lu5q8"]
+
+[node name="VectorInputPanel" type="PanelContainer" node_paths=PackedStringArray("XInput", "YInput")]
+script = ExtResource("1_lu5q8")
+XInput = NodePath("VBoxContainer/XContainer/XInput")
+YInput = NodePath("VBoxContainer/YContainer/YInput")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="XContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/XContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " X: "
+
+[node name="XInput" type="SpinBox" parent="VBoxContainer/XContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -9999.0
+max_value = 9999.0
+step = 0.05
+allow_greater = true
+allow_lesser = true
+
+[node name="YContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/YContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = " Y: "
+
+[node name="YInput" type="SpinBox" parent="VBoxContainer/YContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -9999.0
+max_value = 9999.0
+step = 0.05
+allow_greater = true
+allow_lesser = true
+
+[connection signal="value_changed" from="VBoxContainer/XContainer/XInput" to="." method="OnUpdate"]
+[connection signal="value_changed" from="VBoxContainer/YContainer/YInput" to="." method="OnUpdate"]

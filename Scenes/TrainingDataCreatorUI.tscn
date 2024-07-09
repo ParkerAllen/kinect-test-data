@@ -1,0 +1,335 @@
+[gd_scene load_steps=24 format=3 uid="uid://ca7o0gnun2a0p"]
+
+[ext_resource type="Script" path="res://src/Training/TrainingDataCreatorController.cs" id="1_1wo5m"]
+[ext_resource type="Texture2D" uid="uid://bkxqiw6yoju4b" path="res://Sprites/UI/cog-solid-96.png" id="1_k31n7"]
+[ext_resource type="Texture2D" uid="uid://dpii4q44ltu7o" path="res://Sprites/UI/folder-solid-96.png" id="3_d5p70"]
+[ext_resource type="Texture2D" uid="uid://pptdfp6ug5s3" path="res://Sprites/UI/save-solid-96.png" id="3_oucdk"]
+[ext_resource type="Texture2D" uid="uid://ctn6wx36endip" path="res://Sprites/UI/copy-regular-96.png" id="5_xlfsd"]
+[ext_resource type="Texture2D" uid="uid://c47q5cwfmv6ak" path="res://Sprites/UI/arrow-from-top-regular-96.png" id="6_yimau"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oaxfw"]
+bg_color = Color(0.205526, 0.205514, 0.237197, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngh1i"]
+bg_color = Color(0.205526, 0.205514, 0.237197, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_asce2"]
+bg_color = Color(0.337255, 0.337255, 0.415686, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_byv0k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lbsv"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t33nn"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lbwu"]
+bg_color = Color(0.588235, 0.266667, 0.388235, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ikipg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ljet"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1grdo"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lrob"]
+bg_color = Color(0.588235, 0.266667, 0.388235, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jxuk2"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_4wnps"]
+size = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8vxmw"]
+content_margin_top = 14.0
+content_margin_bottom = 14.0
+bg_color = Color(0.141176, 0.141176, 0.14902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pna4w"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vc086"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uf2qa"]
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[node name="TrainingDataUI" type="Control" node_paths=PackedStringArray("SavePanel", "SaveOptionButton", "SaveLocationButton", "FileDialog", "ArmatureDisplay", "VideoDisplayTexture", "DepthDisplayTexture", "FrameLabel", "DepthOpacitySlider", "FrameContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1wo5m")
+SavePanel = NodePath("VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel")
+SaveOptionButton = NodePath("VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer/SaveModeContainer/OptionButton")
+SaveLocationButton = NodePath("VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer/SaveLocationContainer/SaveLocation")
+FileDialog = NodePath("FileDialog")
+ArmatureDisplay = NodePath("VBoxContainer/HBoxContainer/DisplayPanel/ArmatureDisplay")
+VideoDisplayTexture = NodePath("VBoxContainer/HBoxContainer/DisplayPanel/VideoDisplay")
+DepthDisplayTexture = NodePath("VBoxContainer/HBoxContainer/DisplayPanel/DepthDisplay")
+FrameLabel = NodePath("VBoxContainer/HBoxContainer/DisplayPanel/FrameLabel")
+DepthOpacitySlider = NodePath("VBoxContainer/TopContainer/HSlider")
+FrameContainer = NodePath("VBoxContainer/HBoxContainer/TimelinePanel/ScrollContainer/VBoxContainer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SettingsToggle" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_oaxfw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ngh1i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_asce2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_byv0k")
+toggle_mode = true
+icon = ExtResource("1_k31n7")
+icon_alignment = 1
+expand_icon = true
+
+[node name="SaveTrainingDataButton" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_2lbsv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_t33nn")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1lbwu")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ikipg")
+icon = ExtResource("3_oucdk")
+icon_alignment = 1
+expand_icon = true
+
+[node name="LoadFileButton" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ljet")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1grdo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8lrob")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jxuk2")
+icon = ExtResource("3_d5p70")
+icon_alignment = 1
+expand_icon = true
+
+[node name="LoadBaseArmatureButton" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ljet")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1grdo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8lrob")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jxuk2")
+icon = ExtResource("5_xlfsd")
+icon_alignment = 1
+expand_icon = true
+
+[node name="LoadAboveArmatureButton" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ljet")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1grdo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8lrob")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jxuk2")
+icon = ExtResource("6_yimau")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_icons/grabber = SubResource("PlaceholderTexture2D_4wnps")
+theme_override_icons/grabber_highlight = SubResource("PlaceholderTexture2D_4wnps")
+theme_override_icons/grabber_disabled = SubResource("PlaceholderTexture2D_4wnps")
+theme_override_styles/slider = SubResource("StyleBoxFlat_8vxmw")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_pna4w")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_pna4w")
+max_value = 255.0
+value = 128.0
+rounded = true
+
+[node name="Label" type="Label" parent="VBoxContainer/TopContainer/HSlider"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = " Opacity
+"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TimelinePanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/TimelinePanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/TimelinePanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="DisplayPanel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vc086")
+
+[node name="VideoDisplay" type="TextureRect" parent="VBoxContainer/HBoxContainer/DisplayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 2
+
+[node name="DepthDisplay" type="TextureRect" parent="VBoxContainer/HBoxContainer/DisplayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 2
+
+[node name="ArmatureDisplay" type="Button" parent="VBoxContainer/HBoxContainer/DisplayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 4
+flat = true
+
+[node name="FrameLabel" type="Label" parent="VBoxContainer/HBoxContainer/DisplayPanel"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 480.0
+grow_vertical = 0
+text = "Frame: 0"
+
+[node name="SaveDataPanel" type="Panel" parent="VBoxContainer/HBoxContainer/DisplayPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_uf2qa")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 7
+
+[node name="SaveLocationContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer/SaveLocationContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = " Save Location"
+vertical_alignment = 1
+
+[node name="SaveLocation" type="Button" parent="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer/SaveLocationContainer"]
+custom_minimum_size = Vector2(0, 31)
+layout_direction = 2
+layout_mode = 2
+text = "/home/parkerallen/Documents/KData"
+alignment = 0
+text_overrun_behavior = 3
+
+[node name="SaveModeContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer/SaveModeContainer"]
+layout_mode = 2
+text = " Save Mode"
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer/SaveModeContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+item_count = 2
+selected = 0
+popup/item_0/text = "All"
+popup/item_0/id = 0
+popup/item_1/text = "Only Selected"
+popup/item_1/id = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 150
+alignment = 1
+
+[node name="Cancel" type="Button" parent="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+text = "Cancel"
+
+[node name="Save" type="Button" parent="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+text = "Save"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+position = Vector2i(200, 100)
+size = Vector2i(883, 450)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+show_hidden_files = true
+
+[connection signal="button_up" from="VBoxContainer/TopContainer/SaveTrainingDataButton" to="." method="SelectFile" binds= [1]]
+[connection signal="button_up" from="VBoxContainer/TopContainer/LoadFileButton" to="." method="SelectFile" binds= [0]]
+[connection signal="button_up" from="VBoxContainer/TopContainer/LoadBaseArmatureButton" to="." method="DuplicateParentArmature"]
+[connection signal="button_up" from="VBoxContainer/TopContainer/LoadAboveArmatureButton" to="." method="DuplicatePreviousArmature"]
+[connection signal="value_changed" from="VBoxContainer/TopContainer/HSlider" to="." method="DisplayDepth"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer/SaveLocationContainer/SaveLocation" to="FileDialog" method="show"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer/HBoxContainer/Cancel" to="." method="ToggleSavePanel"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/DisplayPanel/SaveDataPanel/VBoxContainer/HBoxContainer/Save" to="." method="SaveTrainingData"]
+[connection signal="confirmed" from="FileDialog" to="." method="FileSelected"]

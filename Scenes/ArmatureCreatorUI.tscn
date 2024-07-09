@@ -1,0 +1,222 @@
+[gd_scene load_steps=23 format=3 uid="uid://brku4k6suqiob"]
+
+[ext_resource type="Texture2D" uid="uid://bkxqiw6yoju4b" path="res://Sprites/UI/cog-solid-96.png" id="1_3wb8x"]
+[ext_resource type="Script" path="res://src/Armature/ArmatureController.cs" id="1_jwe31"]
+[ext_resource type="Texture2D" uid="uid://pptdfp6ug5s3" path="res://Sprites/UI/save-solid-96.png" id="2_a26me"]
+[ext_resource type="Texture2D" uid="uid://dpii4q44ltu7o" path="res://Sprites/UI/folder-solid-96.png" id="3_0ixsc"]
+[ext_resource type="Texture2D" uid="uid://lds5rnaaluta" path="res://Sprites/UI/plus-circle-regular-96.png" id="4_xooq1"]
+[ext_resource type="Texture2D" uid="uid://cffvatq10duc5" path="res://Sprites/UI/trash-alt-regular-96.png" id="7_rhog3"]
+[ext_resource type="Script" path="res://src/Armature/Color/ColorPickerManager.cs" id="7_umfcy"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4yvnt"]
+bg_color = Color(0.27451, 0.27451, 0.313726, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fe73w"]
+bg_color = Color(0.306345, 0.306356, 0.348775, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h1vja"]
+content_margin_top = 8.0
+bg_color = Color(0.0905851, 0.0905718, 0.108625, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 10
+
+[sub_resource type="Theme" id="Theme_jdwr6"]
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_4yvnt")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_fe73w")
+HSlider/styles/slider = SubResource("StyleBoxFlat_h1vja")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_al5ux"]
+bg_color = Color(0.205526, 0.205514, 0.237197, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dse15"]
+bg_color = Color(0.205526, 0.205514, 0.237197, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my6xi"]
+bg_color = Color(0.337255, 0.337255, 0.415686, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_syblx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q88d4"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gfp2"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_crkxx"]
+bg_color = Color(0.588235, 0.266667, 0.388235, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3ybh0"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rd850"]
+bg_color = Color(0.588235, 0.266667, 0.388235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ljqmb"]
+bg_color = Color(0.654902, 0.337255, 0.443137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r1ln2"]
+bg_color = Color(0.490196, 0.211765, 0.341176, 1)
+
+[node name="ArmatureCreatorUI" type="Control" node_paths=PackedStringArray("fileDialog", "BoneEditorContainer", "ColorPickerManager", "ArmatureDisplay")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_jdwr6")
+script = ExtResource("1_jwe31")
+fileDialog = NodePath("FileDialog")
+BoneEditorContainer = NodePath("VBoxContainer/HBoxContainer/BoneEditorPanel/VBoxContainer")
+ColorPickerManager = NodePath("PopupPanel")
+ArmatureDisplay = NodePath("VBoxContainer/HBoxContainer/ArmatureDisplay")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TopContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SettingsToggle" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_al5ux")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dse15")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_my6xi")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_syblx")
+toggle_mode = true
+icon = ExtResource("1_3wb8x")
+icon_alignment = 1
+expand_icon = true
+
+[node name="SaveArmatureButton" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_q88d4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8gfp2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_crkxx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ybh0")
+icon = ExtResource("2_a26me")
+icon_alignment = 1
+expand_icon = true
+
+[node name="LoadArmatureButton" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_q88d4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8gfp2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_crkxx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ybh0")
+icon = ExtResource("3_0ixsc")
+icon_alignment = 1
+expand_icon = true
+
+[node name="AddBone" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_q88d4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_8gfp2")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_crkxx")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3ybh0")
+icon = ExtResource("4_xooq1")
+icon_alignment = 1
+expand_icon = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="BoneEditorPanel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/BoneEditorPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -35.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer/BoneEditorPanel"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -8.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/normal = SubResource("StyleBoxFlat_rd850")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ljqmb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_r1ln2")
+icon = ExtResource("7_rhog3")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ArmatureDisplay" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_default_cursor_shape = 4
+flat = true
+
+[node name="PopupPanel" type="PopupPanel" parent="."]
+position = Vector2i(255, 102)
+size = Vector2i(308, 152)
+script = ExtResource("7_umfcy")
+
+[node name="ColorPicker" type="ColorPicker" parent="PopupPanel"]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 304.0
+offset_bottom = 156.0
+grow_horizontal = 2
+grow_vertical = 2
+edit_alpha = false
+color_mode = 1
+picker_shape = 4
+can_add_swatches = false
+sampler_visible = false
+color_modes_visible = false
+presets_visible = false
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+position = Vector2i(200, 100)
+size = Vector2i(883, 450)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+
+[connection signal="button_up" from="VBoxContainer/TopContainer/SaveArmatureButton" to="." method="SelectFile" binds= [false]]
+[connection signal="button_up" from="VBoxContainer/TopContainer/LoadArmatureButton" to="." method="SelectFile" binds= [true]]
+[connection signal="button_down" from="VBoxContainer/TopContainer/AddBone" to="." method="AddBone"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/BoneEditorPanel/Button" to="." method="RemoveBone"]
+[connection signal="color_changed" from="PopupPanel/ColorPicker" to="PopupPanel" method="OnUpdate"]
+[connection signal="confirmed" from="FileDialog" to="." method="FileSelected"]

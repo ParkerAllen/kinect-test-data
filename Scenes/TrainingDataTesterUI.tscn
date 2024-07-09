@@ -1,0 +1,217 @@
+[gd_scene load_steps=17 format=3 uid="uid://x70vfwdngjpo"]
+
+[ext_resource type="Texture2D" uid="uid://bkxqiw6yoju4b" path="res://Sprites/UI/cog-solid-96.png" id="1_qlrqy"]
+[ext_resource type="Texture2D" uid="uid://dpii4q44ltu7o" path="res://Sprites/UI/folder-solid-96.png" id="2_t6fj8"]
+[ext_resource type="Texture2D" uid="uid://bebdaqg347ma1" path="res://Sprites/UI/play-circle-regular-96.png" id="3_orv36"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oaxfw"]
+bg_color = Color(0.205526, 0.205514, 0.237197, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngh1i"]
+bg_color = Color(0.205526, 0.205514, 0.237197, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_asce2"]
+bg_color = Color(0.337255, 0.337255, 0.415686, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_byv0k"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ljet"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1grdo"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8lrob"]
+bg_color = Color(0.588235, 0.266667, 0.388235, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jxuk2"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_h640m"]
+size = Vector2(0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8xqvk"]
+content_margin_top = 14.0
+content_margin_bottom = 14.0
+bg_color = Color(0.141176, 0.141176, 0.14902, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my2lg"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+corner_radius_top_left = 10
+corner_radius_bottom_left = 10
+corner_detail = 20
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vc086"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q5e2x"]
+
+[node name="TrainingDataUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TopContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SettingsToggle" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_oaxfw")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ngh1i")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_asce2")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_byv0k")
+toggle_mode = true
+icon = ExtResource("1_qlrqy")
+icon_alignment = 1
+expand_icon = true
+
+[node name="LoadKinectDataButton" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ljet")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1grdo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8lrob")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jxuk2")
+icon = ExtResource("2_t6fj8")
+icon_alignment = 1
+expand_icon = true
+
+[node name="StartButton" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_6ljet")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1grdo")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_8lrob")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jxuk2")
+icon = ExtResource("3_orv36")
+icon_alignment = 1
+expand_icon = true
+
+[node name="OptionButton" type="OptionButton" parent="VBoxContainer/TopContainer"]
+layout_mode = 2
+item_count = 2
+selected = 0
+popup/item_0/text = "Kinect"
+popup/item_0/id = 0
+popup/item_1/text = "Heat  Map"
+popup/item_1/id = 1
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(175, 0)
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_icons/grabber = SubResource("PlaceholderTexture2D_h640m")
+theme_override_icons/grabber_highlight = SubResource("PlaceholderTexture2D_h640m")
+theme_override_icons/grabber_disabled = SubResource("PlaceholderTexture2D_h640m")
+theme_override_styles/slider = SubResource("StyleBoxFlat_8xqvk")
+theme_override_styles/grabber_area = SubResource("StyleBoxFlat_my2lg")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxFlat_my2lg")
+max_value = 255.0
+rounded = true
+
+[node name="Label" type="Label" parent="VBoxContainer/TopContainer/HSlider"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = " Opacity
+"
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="TimelinePanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/HBoxContainer/TimelinePanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/TimelinePanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 1
+
+[node name="KinectDisplayPanel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_vc086")
+
+[node name="VideoDisplay" type="TextureRect" parent="VBoxContainer/HBoxContainer/KinectDisplayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DepthDisplay" type="TextureRect" parent="VBoxContainer/HBoxContainer/KinectDisplayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TrainerDisplay" type="TextureRect" parent="VBoxContainer/HBoxContainer/KinectDisplayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 644.0
+offset_right = 644.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ArmaturePanel" type="Panel" parent="VBoxContainer/HBoxContainer/KinectDisplayPanel"]
+clip_contents = true
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 480.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q5e2x")
+
+[node name="FrameLabel" type="Label" parent="VBoxContainer/HBoxContainer/KinectDisplayPanel"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 480.0
+grow_vertical = 0
+text = "Frame: 0"
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+position = Vector2i(200, 100)
+size = Vector2i(883, 450)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+
+[connection signal="button_up" from="VBoxContainer/TopContainer/LoadKinectDataButton" to="." method="SelectFile" binds= [3]]
+[connection signal="button_up" from="VBoxContainer/TopContainer/StartButton" to="." method="SelectFile"]
+[connection signal="confirmed" from="FileDialog" to="." method="FileSelected"]

@@ -1,0 +1,147 @@
+[gd_scene load_steps=9 format=3 uid="uid://bjwjo0mh14u0e"]
+
+[ext_resource type="Script" path="res://src/NerualNetworkVisualizer/NetworkVisualizerController.cs" id="1_w11ey"]
+[ext_resource type="Texture2D" uid="uid://dpii4q44ltu7o" path="res://Sprites/UI/folder-solid-96.png" id="2_04f8k"]
+[ext_resource type="Script" path="res://src/NerualNetworkVisualizer/Frame/NetworkFrameController.cs" id="2_tljwv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cnt64"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ff1v"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_35a3y"]
+bg_color = Color(0.588235, 0.266667, 0.388235, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h71ll"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5r1pn"]
+
+[node name="ConvolutionVisualizationUI" type="Control" node_paths=PackedStringArray("FrameMangerContainer", "NetworkFrameController")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w11ey")
+FrameMangerContainer = NodePath("ScrollContainer/HBoxContainer/FramePanel")
+NetworkFrameController = NodePath("ScrollContainer/HBoxContainer/FramePanel")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="FramePanel" type="PanelContainer" parent="ScrollContainer/HBoxContainer" node_paths=PackedStringArray("FileDialog", "FrameContainer", "DepthTexture", "FrameLabel")]
+layout_mode = 2
+script = ExtResource("2_tljwv")
+FileDialog = NodePath("../../../FileDialog")
+FrameContainer = NodePath("VBoxContainer/HBoxContainer/TimelinePanel/ScrollContainer/HBoxContainer")
+DepthTexture = NodePath("VBoxContainer/DisplayPanel/DepthDisplay")
+FrameLabel = NodePath("VBoxContainer/DisplayPanel/FrameLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer/HBoxContainer/FramePanel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/HBoxContainer/FramePanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoadKinectDataButton" type="Button" parent="ScrollContainer/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_cnt64")
+theme_override_styles/hover = SubResource("StyleBoxFlat_2ff1v")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_35a3y")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_h71ll")
+icon = ExtResource("2_04f8k")
+icon_alignment = 1
+expand_icon = true
+
+[node name="TimelinePanel" type="PanelContainer" parent="ScrollContainer/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/TimelinePanel"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/TimelinePanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 1
+
+[node name="DisplayPanel" type="Panel" parent="ScrollContainer/HBoxContainer/FramePanel/VBoxContainer"]
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_5r1pn")
+
+[node name="VideoDisplay" type="TextureRect" parent="ScrollContainer/HBoxContainer/FramePanel/VBoxContainer/DisplayPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DepthDisplay" type="TextureRect" parent="ScrollContainer/HBoxContainer/FramePanel/VBoxContainer/DisplayPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FrameLabel" type="Label" parent="ScrollContainer/HBoxContainer/FramePanel/VBoxContainer/DisplayPanel"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 480.0
+grow_vertical = 0
+text = "Frame: 0"
+
+[node name="LayerPanel" type="PanelContainer" parent="ScrollContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ScrollContainer/HBoxContainer/LayerPanel"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ScrollContainer/HBoxContainer/LayerPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="ScrollContainer/HBoxContainer/LayerPanel/ScrollContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="ScrollContainer/HBoxContainer/LayerPanel/ScrollContainer/HBoxContainer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+position = Vector2i(200, 100)
+size = Vector2i(883, 450)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+show_hidden_files = true
+
+[connection signal="button_up" from="ScrollContainer/HBoxContainer/FramePanel/VBoxContainer/HBoxContainer/LoadKinectDataButton" to="ScrollContainer/HBoxContainer/FramePanel" method="SelectFile" binds= [2]]
+[connection signal="confirmed" from="FileDialog" to="ScrollContainer/HBoxContainer/FramePanel" method="FileSelected"]

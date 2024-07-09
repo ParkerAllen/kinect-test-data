@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7h320dbc30s0"]
+
+[ext_resource type="Script" path="res://src/NerualNetworkVisualizer/Frame/NetworkFramePanel.cs" id="1_7wlfd"]
+
+[node name="FramePanel" type="Button"]
+custom_minimum_size = Vector2(25, 0)
+offset_right = 8.0
+offset_bottom = 14.0
+script = ExtResource("1_7wlfd")
+
+[connection signal="button_up" from="." to="." method="OnPressUp"]

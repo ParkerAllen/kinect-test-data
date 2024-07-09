@@ -1,0 +1,355 @@
+[gd_scene load_steps=24 format=3 uid="uid://0xw1wp75nbpv"]
+
+[ext_resource type="Script" path="res://src/KinectRecorder/KinectRecorderController.cs" id="1_6gvt0"]
+[ext_resource type="Texture2D" uid="uid://bkxqiw6yoju4b" path="res://Sprites/UI/cog-solid-96.png" id="2_k43in"]
+[ext_resource type="Texture2D" uid="uid://l4j4krrgwssq" path="res://Sprites/UI/camera-solid-96.png" id="3_3wq44"]
+[ext_resource type="Texture2D" uid="uid://cffvatq10duc5" path="res://Sprites/UI/trash-alt-regular-96.png" id="3_it8qe"]
+[ext_resource type="Texture2D" uid="uid://bebdaqg347ma1" path="res://Sprites/UI/play-circle-regular-96.png" id="4_i17vu"]
+[ext_resource type="Script" path="res://src/KinectRecorder/UI/NumberLineEdit.cs" id="6_xyd4i"]
+[ext_resource type="Script" path="res://src/UI/FloatToText.cs" id="7_5wwj4"]
+[ext_resource type="Script" path="res://src/KinectRecorder/UI/PathSelector.cs" id="7_xf573"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kg7fg"]
+bg_color = Color(0.205526, 0.205514, 0.237197, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j72wi"]
+bg_color = Color(0.205526, 0.205514, 0.237197, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7m20p"]
+bg_color = Color(0.337255, 0.337255, 0.415686, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2hg3c"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3x8k"]
+bg_color = Color(0.588235, 0.266667, 0.388235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dc1ym"]
+bg_color = Color(0.654902, 0.337255, 0.443137, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vkj7s"]
+bg_color = Color(0.490196, 0.211765, 0.341176, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_isvm7"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5yf3u"]
+bg_color = Color(0.321569, 0.529412, 0.447059, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_md8m5"]
+bg_color = Color(0.588235, 0.266667, 0.388235, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sm7i2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ehbiy"]
+bg_color = Color(0.205526, 0.205514, 0.237197, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tjh61"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jruwo"]
+bg_color = Color(0.321569, 0.341176, 0.392157, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x0a2x"]
+font_size = 80
+
+[node name="KinectRecorder" type="Control" node_paths=PackedStringArray("VideoCameraDisplay", "VideoFPSLabel", "VideoToggle", "RecordingToggle", "CameraModeToggle", "CountDownInput", "DurationInput", "FPSCapInput", "PathSelector", "DelayTimeLabel", "RecordingTimeLabel", "FrameRecordTimer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6gvt0")
+VideoCameraDisplay = NodePath("VBoxContainer/HBoxContainer/VideoPanel/VideoDisplay")
+VideoFPSLabel = NodePath("VBoxContainer/HBoxContainer/VideoPanel/FPS")
+VideoToggle = NodePath("VBoxContainer/TopContainer/VideoToggle")
+RecordingToggle = NodePath("VBoxContainer/TopContainer/RecordToggle")
+CameraModeToggle = NodePath("VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/CameraToggle/HBoxContainer/CheckButton")
+CountDownInput = NodePath("VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/CountDownPanel/HBoxContainer/CountDown")
+DurationInput = NodePath("VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/RecordDurationPanel/HBoxContainer/RecordDuration")
+FPSCapInput = NodePath("VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/FPSCapPanel/HBoxContainer/FPSCap")
+PathSelector = NodePath("VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/SaveLocationPanel/VsBoxContainer/SaveLocation")
+DelayTimeLabel = NodePath("VBoxContainer/HBoxContainer/VideoPanel/DelayTimeLabel")
+RecordingTimeLabel = NodePath("VBoxContainer/TopContainer/RecordingTimeLabel")
+FrameRecordTimer = NodePath("FPSTimer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TopContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SettingsToggle" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_kg7fg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_j72wi")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7m20p")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2hg3c")
+toggle_mode = true
+icon = ExtResource("2_k43in")
+icon_alignment = 1
+expand_icon = true
+
+[node name="KillButton" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_t3x8k")
+theme_override_styles/hover = SubResource("StyleBoxFlat_dc1ym")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vkj7s")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2hg3c")
+icon = ExtResource("3_it8qe")
+icon_alignment = 1
+expand_icon = true
+
+[node name="VideoToggle" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_isvm7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5yf3u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_md8m5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sm7i2")
+toggle_mode = true
+icon = ExtResource("3_3wq44")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RecordToggle" type="Button" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/normal = SubResource("StyleBoxFlat_isvm7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5yf3u")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_md8m5")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sm7i2")
+toggle_mode = true
+icon = ExtResource("4_i17vu")
+icon_alignment = 1
+expand_icon = true
+
+[node name="RecordingTimeLabel" type="Label" parent="VBoxContainer/TopContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_ehbiy")
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="SettingsPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel"]
+layout_mode = 2
+
+[node name="CameraToggle" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/CameraToggle"]
+layout_mode = 2
+alignment = 2
+
+[node name="Video" type="Label" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/CameraToggle/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Video"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/CameraToggle/HBoxContainer"]
+layout_mode = 2
+
+[node name="Depth" type="Label" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/CameraToggle/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Depth"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CountDownPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/CountDownPanel"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/CountDownPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = " Count Down Timer(s)"
+vertical_alignment = 1
+
+[node name="CountDown" type="LineEdit" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/CountDownPanel/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "3"
+script = ExtResource("6_xyd4i")
+
+[node name="RecordDurationPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/RecordDurationPanel"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/RecordDurationPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = " Record Duration(s)"
+vertical_alignment = 1
+
+[node name="RecordDuration" type="LineEdit" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/RecordDurationPanel/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "5"
+script = ExtResource("6_xyd4i")
+
+[node name="FPSCapPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/FPSCapPanel"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/FPSCapPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = " FPS Cap
+"
+vertical_alignment = 1
+
+[node name="FPSCap" type="LineEdit" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/FPSCapPanel/HBoxContainer"]
+layout_mode = 2
+placeholder_text = "16"
+script = ExtResource("6_xyd4i")
+
+[node name="TiltPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/TiltPanel"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/TiltPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = " Kinect Tilt
+"
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/TiltPanel/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+text = "5
+"
+vertical_alignment = 1
+script = ExtResource("7_5wwj4")
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/TiltPanel/HBoxContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = -20.0
+max_value = 20.0
+step = 0.0
+
+[node name="SaveLocationPanel" type="PanelContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="VsBoxContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/SaveLocationPanel"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/SaveLocationPanel/VsBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = " Save Location"
+vertical_alignment = 1
+
+[node name="SaveLocation" type="Button" parent="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/SaveLocationPanel/VsBoxContainer" node_paths=PackedStringArray("FileDialog")]
+custom_minimum_size = Vector2(0, 31)
+layout_direction = 2
+layout_mode = 2
+text = "/home/parkerallen/Documents/KData"
+alignment = 0
+text_overrun_behavior = 3
+script = ExtResource("7_xf573")
+FileDialog = NodePath("../../../../../../../FileDialog")
+
+[node name="VideoPanel" type="Panel" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(640, 480)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_tjh61")
+
+[node name="VideoDisplay" type="TextureRect" parent="VBoxContainer/HBoxContainer/VideoPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FPS" type="Label" parent="VBoxContainer/HBoxContainer/VideoPanel"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -26.0
+offset_right = 480.0
+grow_vertical = 0
+text = "FPS: 0"
+
+[node name="Timer" type="Timer" parent="VBoxContainer/HBoxContainer/VideoPanel/FPS"]
+autostart = true
+
+[node name="DelayTimeLabel" type="Label" parent="VBoxContainer/HBoxContainer/VideoPanel"]
+visible = false
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_jruwo")
+text = "3"
+label_settings = SubResource("LabelSettings_x0a2x")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="FileDialog" type="FileDialog" parent="."]
+title = "Open a Directory"
+position = Vector2i(200, 100)
+size = Vector2i(883, 450)
+ok_button_text = "Select Current Folder"
+file_mode = 2
+access = 2
+
+[node name="FPSTimer" type="Timer" parent="."]
+
+[connection signal="toggled" from="VBoxContainer/TopContainer/SettingsToggle" to="VBoxContainer/HBoxContainer/SettingsPanel" method="set_visible"]
+[connection signal="button_up" from="VBoxContainer/TopContainer/KillButton" to="." method="ShutDown"]
+[connection signal="pressed" from="VBoxContainer/TopContainer/VideoToggle" to="." method="ToggleCamera"]
+[connection signal="toggled" from="VBoxContainer/TopContainer/RecordToggle" to="." method="ToggleRecording"]
+[connection signal="toggled" from="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/CameraToggle/HBoxContainer/CheckButton" to="." method="ToggleCameraMode"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/TiltPanel/HBoxContainer/HSlider" to="." method="OnTiltKinect"]
+[connection signal="value_changed" from="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/TiltPanel/HBoxContainer/HSlider" to="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/TiltPanel/HBoxContainer/Label2" method="SetText"]
+[connection signal="button_up" from="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/SaveLocationPanel/VsBoxContainer/SaveLocation" to="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/SaveLocationPanel/VsBoxContainer/SaveLocation" method="OpenFileDialog"]
+[connection signal="mouse_entered" from="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/SaveLocationPanel/VsBoxContainer/SaveLocation" to="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/SaveLocationPanel/VsBoxContainer/SaveLocation" method="set_text_overrun_behavior" binds= [0]]
+[connection signal="mouse_exited" from="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/SaveLocationPanel/VsBoxContainer/SaveLocation" to="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/SaveLocationPanel/VsBoxContainer/SaveLocation" method="set_text_overrun_behavior" binds= [3]]
+[connection signal="timeout" from="VBoxContainer/HBoxContainer/VideoPanel/FPS/Timer" to="." method="UpdateFPS"]
+[connection signal="confirmed" from="FileDialog" to="VBoxContainer/HBoxContainer/SettingsPanel/VBoxContainer/SaveLocationPanel/VsBoxContainer/SaveLocation" method="UpdateText"]
+[connection signal="timeout" from="FPSTimer" to="." method="RecordFrame"]

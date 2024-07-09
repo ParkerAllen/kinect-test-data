@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdbj2hna1vbos"]
+
+[ext_resource type="Texture2D" uid="uid://bfd3hkplpersf" path="res://Sprites/UI/radio-circle-marked-regular-96.png" id="1_n00qh"]
+
+[node name="BoneButton" type="Button"]
+size_flags_horizontal = 3
+text = "Name"
+icon = ExtResource("1_n00qh")
+expand_icon = true

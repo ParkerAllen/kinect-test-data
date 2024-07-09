@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://src/Armature/Bone/BoneInputPanel.cs" id="1_eojmw"]
+[ext_resource type="Texture2D" uid="uid://bfd3hkplpersf" path="res://Sprites/UI/radio-circle-marked-regular-96.png" id="2_hf60i"]
+
+[node name="BoneInputPanel" type="PanelContainer" node_paths=PackedStringArray("TitleLabel", "Button")]
+script = ExtResource("1_eojmw")
+TitleLabel = NodePath("HBoxContainer/Label")
+Button = NodePath("HBoxContainer/Button")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Next Bone:"
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Name"
+icon = ExtResource("2_hf60i")
+expand_icon = true
+
+[connection signal="button_down" from="HBoxContainer/Button" to="." method="OnClick"]
